@@ -21,6 +21,15 @@ namespace AsyncInn
                 o.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
 
             });
+            builder.Services.AddSwaggerGen(options =>
+            {
+                // Make sure get the "using Statement"
+                options.SwaggerDoc("v1", new OpenApiInfo()
+                {
+                    Title = "Async Inn",
+                    Version = "v1",
+                });
+            });
 
 
             builder.Services.AddDbContext<AsyncInnContext>(options =>
@@ -29,9 +38,19 @@ namespace AsyncInn
 
             .GetConnectionString("DefaultConnection")));
 
+            
+
 
             var app = builder.Build();
-           
+
+            app.UseSwagger(options => {
+                options.RouteTemplate = "/api/{documentName}/swagger.json";
+            });
+            app.UseSwaggerUI(options => {
+                options.SwaggerEndpoint("/api/v1/swagger.json", "Async Inn");
+                options.RoutePrefix = "docs";
+            });
+
             //app.MapGet("/", () => "Hello World!");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -41,6 +60,12 @@ namespace AsyncInn
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{cotroller=Home}/{action=Index}/{id?}");
+
+
+            app.MapControllerRoute(
+           name: "default",
+           pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
             // https://localhost:33491/Hotel/CheckIn/1
             app.Run();

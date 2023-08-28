@@ -247,3 +247,13 @@ C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\obj\Debug\net7.0\refint\AsyncI
 C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\obj\Debug\net7.0\AsyncInn.pdb
 C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\obj\Debug\net7.0\AsyncInn.genruntimeconfig.cache
 C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\obj\Debug\net7.0\ref\AsyncInn.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\System.Net.Http.Formatting.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\System.Web.Http.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\System.Web.Http.WebHost.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\Microsoft.Web.Infrastructure.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\Swashbuckle.Core.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\bin\Debug\net7.0\WebActivatorEx.dll
+C:\Users\jayde\Documents\GitHub\401Lab14\AsyncInn\obj\Debug\net7.0\AsyncInn.MvcApplicationPartsAssemblyInfo.cs
