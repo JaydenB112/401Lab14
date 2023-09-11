@@ -26,10 +26,10 @@ namespace AsyncInn.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<HotelRoom>>> GetHotelRooms()
         {
-          if (_context.HotelRooms == null)
-          {
-              return NotFound();
-          }
+            if (_context.HotelRooms == null)
+            {
+                return NotFound();
+            }
             return await _context.HotelRooms.ToListAsync();
         }
 
@@ -38,7 +38,7 @@ namespace AsyncInn.Controllers
 
         public async Task<ActionResult<IEnumerable<HotelRoom>>> GetAllRoomsforHotel(int hotelID)
         {
-            if(hotelID == 0)
+            if (hotelID == 0)
             {
                 return NotFound();
             }
@@ -50,10 +50,10 @@ namespace AsyncInn.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<HotelRoom>> GetHotelRoom(int id)
         {
-          if (_context.HotelRooms == null)
-          {
-              return NotFound();
-          }
+            if (_context.HotelRooms == null)
+            {
+                return NotFound();
+            }
             var hotelRoom = await _context.HotelRooms.FindAsync(id);
 
             if (hotelRoom == null)
@@ -73,7 +73,7 @@ namespace AsyncInn.Controllers
                 return NotFound();
             }
             var hotelRoom = await _context.HotelRooms.Where(hr => hr.HotelID == hotelId).ToListAsync();
-            return hotelRoom;  
+            return hotelRoom;
         }
 
         // PUT: api/HotelRooms/5
@@ -109,7 +109,7 @@ namespace AsyncInn.Controllers
 
         [HttpPut]
         [Route("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
-        public async Task<IActionResult>UpdateRoom(int id, HotelRoom hotelRoom)
+        public async Task<IActionResult> UpdateRoom(int id, HotelRoom hotelRoom)
         {
             if (id != hotelRoom.Id)
             {
@@ -141,25 +141,25 @@ namespace AsyncInn.Controllers
         [HttpPost]
         public async Task<ActionResult<HotelRoom>> PostHotelRoom(HotelRoom hotelRoom)
         {
-          if (_context.HotelRooms == null)
-          {
-              return Problem("Entity set 'AsyncInnContext.HotelRooms'  is null.");
-          }
+            if (_context.HotelRooms == null)
+            {
+                return Problem("Entity set 'AsyncInnContext.HotelRooms'  is null.");
+            }
             _context.HotelRooms.Add(hotelRoom);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetHotelRoom", new { id = hotelRoom.Id }, hotelRoom);
-            
+
         }
 
         [HttpPost]
         [Route("/api/Hotels/{hotelId}/Rooms")]
-        public async Task<ActionResult<HotelRoom>> NewRoom([FromQuery]HotelRoom hotelRoom, int id,[FromBody]int RoomId)
+        public async Task<ActionResult<HotelRoom>> NewRoom([FromQuery] HotelRoom hotelRoom, int id, [FromBody] int RoomId)
         {
             var hotel = _context.Hotel.FindAsync(id);
             var room = _context.Rooms.FindAsync(id);
-            
-            if(hotel == null || room == null)
+
+            if (hotel == null || room == null)
             {
                 return NotFound($"Hotel ID{id} is not found! You're an idiot!");
             }
@@ -167,40 +167,22 @@ namespace AsyncInn.Controllers
         }
 
 
-        // DELETE: api/HotelRooms/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteHotelRoom(int id)
+
+
+        [HttpDelete]
+        [Route("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
+        public async Task<IActionResult> DeleteSpecificRoom(int id, int roomID)
         {
-            if (_context.HotelRooms == null)
-            {
-                return NotFound();
-            }
-            var hotelRoom = await _context.HotelRooms.FindAsync(id);
-            if (hotelRoom == null)
-            {
-                return NotFound();
-            }
-
-            _context.HotelRooms.Remove(hotelRoom);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
-
-    [HttpDelete("{id}")]
-    [Route("/api/Hotels/{hotelId}/Rooms/{roomNumber}")]
-    public async Task<IActionResult> DeleteSpecificRoom(int id, int roomID)
-    {
-        var hotelroom = await  _context.HotelRooms.FirstOrDefaultAsync(r => r.HotelID == id && r.RoomID == roomID);
+            var hotelroom = await _context.HotelRooms.FirstOrDefaultAsync(r => r.HotelID == id && r.RoomID == roomID);
             if (hotelroom == null)
             {
                 return NotFound();
             }
-           _context.HotelRooms.Remove(hotelroom);
+            _context.HotelRooms.Remove(hotelroom);
             await _context.SaveChangesAsync();
             return NoContent();
-    }
-        private bool HotelRoomExists(int id )
+        }
+        private bool HotelRoomExists(int id)
         {
             return (_context.HotelRooms?.Any(e => e.Id == id)).GetValueOrDefault();
         }

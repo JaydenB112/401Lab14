@@ -4,6 +4,8 @@ using Microsoft.Extensions.Options;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerGen;
+
 
 namespace AsyncInn
 {
@@ -62,9 +64,7 @@ namespace AsyncInn
                 pattern: "{cotroller=Home}/{action=Index}/{id?}");
 
 
-            app.MapControllerRoute(
-           name: "default",
-           pattern: "{controller=Home}/{action=Index}/{id?}");
+         
 
 
             // https://localhost:33491/Hotel/CheckIn/1

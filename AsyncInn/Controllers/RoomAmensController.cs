@@ -115,8 +115,8 @@ namespace AsyncInn.Controllers
 
             return NoContent();
         }
-     
-        [Route("/api/Hotels/{hotelId}/Rooms/{roomID}")]
+        [HttpDelete("{id}")]   
+        [Route("api/HotelRooms/DeleteHotelRoom/{id}")]
         public async Task<IActionResult> DeleteSpecificRoom(int hotelId, int roomID)
         {
             var hotelRoom = await _context.HotelRooms.FirstOrDefaultAsync(r => r.HotelID == hotelId && r.RoomID == roomID);
